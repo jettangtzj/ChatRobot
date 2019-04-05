@@ -20,6 +20,7 @@ import android.widget.Toast
 import com.devis.chatrobot.adapter.MyRecyclerViewAdapter
 import org.jetbrains.anko.*
 import org.json.JSONObject
+import java.lang.Exception
 import java.net.URL
 import java.net.URLEncoder
 import java.util.*
@@ -51,7 +52,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun initData() {
         //获取用户唯一ID
         val TelephonyMgr: TelephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager;
-        USER_ID = TelephonyMgr.getDeviceId();
+        try{
+            USER_ID = TelephonyMgr.getDeviceId()
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
         Log.e(javaClass.simpleName, "USER_ID = $USER_ID")
     }
 
@@ -70,7 +75,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
 
         //发送按钮
-        sendButton.onClick {
+        sendButton.callOnClick() ; run{
             sendMessage(inputEditText.text.toString())
         }
 
@@ -99,7 +104,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         recyclerView.scrollToPosition(messages.size - 1)
 
         //开始请求API
-        async() {
+        doAsync() {
             //拼接请求
             val url: String = "$BASE_URL?key=$API_KEY&info=${URLEncoder.encode(content)}&userid=$USER_ID"
             //发送请求,获取返回的字符串

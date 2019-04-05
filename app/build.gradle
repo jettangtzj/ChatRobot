@@ -21,14 +21,15 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-
-    implementation "org.jetbrains.anko:anko-sdk25:0.10.7"
-    implementation "org.jetbrains.anko:anko-appcompat-v7:0.10.7" // For appcompat-v7 bindings
-
+    implementation 'org.jetbrains.anko:anko-sdk25:0.10.7'
+    implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.7'
+    // For appcompat-v7 bindings
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
 }
 
