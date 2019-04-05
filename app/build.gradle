@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 27
 
     defaultConfig {
         applicationId "com.devis.chatrobot"
-        minSdkVersion 15
-        targetSdkVersion 22
+        minSdkVersion 22
+        targetSdkVersion 27
         versionCode 2
         versionName "1.1"
     }
@@ -18,35 +18,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:$support_version"
-    compile "com.android.support:design:$support_version"
-    compile "com.android.support:recyclerview-v7:$support_version"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:27.0.2'
 
-    compile "org.jetbrains.anko:anko-sdk23:$anko_version" //sdk15, sdk19, sdk21, sdk23 are also available
-    compile "org.jetbrains.anko:anko-support-v4:$anko_version" // In case you need support.v4 bindings
-    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version" // For appcompat-v7 bindings
+    implementation "org.jetbrains.anko:anko-sdk25:0.10.7"
+    implementation "org.jetbrains.anko:anko-appcompat-v7:0.10.7" // For appcompat-v7 bindings
 
 }
-buildscript {
-    ext.kotlin_version = '1.0.0'
-    ext.support_version = '23.2.0'
-    ext.anko_version = '0.8.2'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-repositories {
-    mavenCentral()
-}
+
